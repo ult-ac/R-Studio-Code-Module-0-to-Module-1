@@ -1,0 +1,123 @@
+### dotplot                  
+> p <- ggplot(mpg, aes(x = displ, y = hwy))
+> p <- p + geom_point()
+> print(p)
+
+### ggplot_mpg_displ_hwy_colour_class
+> p <- ggplot(mpg, aes(x = displ, y = hwy))
+> p <- p + geom_point(aes(colour = class))
+> print(p)
+
+### ggplot_mpg_displ_hwy_colour_size_cyl_shape_drv
+> p <- ggplot(mpg, aes(x = displ, y = hwy))
+> p <- p + geom_point(aes(colour = class, size = cyl, shape = drv))
+> print(p)
+
+### ggplot_mpg_displ_hwy_colour_class_size_cyl_shape_drv_alpha
+> p <- ggplot(mpg, aes(x = displ, y = hwy))
+> p <- p + geom_point(aes(colour = class, size = cyl, shape = drv, alpha = 1/4))
+> print(p)
+
+
+
+## ggplot_mpg_displ_hwy_facet
+> 
+> p <- ggplot(mpg, aes(x = displ, y = hwy))
+> p <- p + geom_point()
+> p1 <- p + facet_grid(. ~ cyl)
+> p2 <- p + facet_grid(drv ~ .)
+> p3 <- p + facet_grid(drv ~ cyl)
+> p4 <- p + facet_wrap(~ class)
+> library(gridExtra)
+> grid.arrange(p1, p2, p3, p4, ncol = 2)
+### ggplot_mpg_city_hwy
+> p <- ggplot(mpg, aes(x = cty, y = hwy))
+> p <- p + geom_point()
+> print(p)
+
+
+### ggplot_mpg_cty_hwy_jitter
+> p <- ggplot(mpg, aes(x = cty, y = hwy))
+> p <- p + geom_point(position = "jitter", alpha = 1/2)
+> print(p)
+
+### ggplot_mpg_class_hwy
+> p <- ggplot(mpg, aes(x = class, y = hwy))
+> p <- p + geom_point()
+> print(p)
+
+### ggplot_mpg,reorder_class_hwy_jitter
+> p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+> p <- p + geom_point(position = "jitter")
+> print(p)
+
+
+### ggplot_mpg_reorder_class_hwy_boxplot
+> p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+> p <- p + geom_boxplot()
+> print(p)
+
+### ggplot_mpg_reorder_class_hwy_jitter_boxplot
+> p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+> p <- p + geom_point(position = "jitter")
+> p <- p + geom_boxplot(alpha = 0.5)
+> print(p)
+
+
+### ggplot_mpg_reorder_class_hwy_boxplot_jitter
+> p <- ggplot(mpg, aes(x = reorder(class, hwy), y = hwy))
+> p <- p + geom_boxplot(alpha = 0.5)
+> p <- p + geom_point(position = "jitter")
+> print(p)
+
+
+### ggplot_mpg_reorder_class_hwy_boxplot_jitter_median
+> p <- ggplot(mpg, aes(x = reorder(class, hwy, FUN = median), y = hwy))
+> p <- p + geom_boxplot(alpha = 0.5)
+> p <- p + geom_point(position = "jitter")
+> print(p)
+
+
+
+hb <- c(141, 148, 132, 138, 154, 142, 150, 146, 155, 158, 150, 140, 147, 148, 144, 150, 149, 145)
+> sort(hb)
+ [1] 132 138 140 141 142 144 145 146 147 148 148 149 150
+[14] 150 150 154 155 158
+> length(hb)
+[1] 18
+> summary(hb)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  132.0   142.5   147.5   146.5   150.0   158.0 
+> fivenum(hb)
+[1] 132.0 142.0 147.5 150.0 158.0
+> range(hb)
+[1] 132 158
+> diff(range(hb))
+[1] 26
+> mean(hb)
+[1] 146.5
+> sd(hb)
+[1] 6.382421
+> se <- sd(hb)/sqrt(length(hb))
+> ### dotplot, stripchart-ggplot
+> par(mfrow=c(3,1))
+> stripchart(hb, main="Modern Englishman", xlab="head breadth (mm)")
+> stripchart(hb, method="stack", cex=2, main="larger points (cex=2), method is stack")
+> stripchart(hb, method="jitter", cex=2, frame.plot=FALSE, main="no frame, method is jitter")
+> library(ggplot2)
+> hb_df <- data.frame(hb)
+> p1 <- ggplot(hb_df, aes(x = hb))
+> p1 <- p1 + geom_dotplot(binwidth = 2) 
+> p1 <- p1 + labs(title = "Modern Englishman head breadth")
+> p1 <- p1 + xlab("head breadth (mm)")
+> 
+> p2 <- ggplot(hb_df, aes(x = hb))
+> p2 <- p2 + geom_dotplot(binwidth = 2, stackdir = "center")
+> p2 <- p2 + labs(title = "Modern Englishman head breadth, stackdir=center")
+> p2 <- p2 + xlab("head breadth(mm)")
+> p3 <- ggplot(hb_df, aes(x = hb))
+> p3 <- p3 + geom_dotplot(binwidth = 2, stackdir = "centerwhole")
+> p3 <- p3 + labs(title = "Modern Englishman head breadth, stackdir=centerwhole")
+> p3 <- p3 + xlab("head breadth (mm)")
+> library(gridExtra)
+> grid.arrange(p1, p2, p3, ncol=1)

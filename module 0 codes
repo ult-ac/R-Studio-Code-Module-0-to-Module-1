@@ -1,0 +1,229 @@
+> ### Calculator
+> # Arithmetic
+> 2*10
+[1] 20
+> 1 + 2
+[1] 3
+> # Order of operations is preserved
+> 1 + 5 * 10
+[1] 51
+> (1 + 5) * 10
+[1] 60
+> # Exponents use the ^ symbol
+> 2^5
+[1] 32
+> 9^(1/2)
+[1] 3
+> ### Vectors
+> # Create a vector with the c (short for combine) function
+> c(1, 4, 6, 7)
+[1] 1 4 6 7
+> c(1:5, 10)
+[1]  1  2  3  4  5 10
+> # or use seq, short for sequence)
+> seq(1, 10, by = 2)
+[1] 1 3 5 7 9
+> seq(0, 50, length = 11)
+ [1]  0  5 10 15 20 25 30 35 40 45 50
+> seq(1, 50, length = 11)
+ [1]  1.0  5.9 10.8 15.7 20.6 25.5 30.4 35.3 40.2 45.1 50.0
+> seq(1, 10)
+ [1]  1  2  3  4  5  6  7  8  9 10
+> 5:1
+[1] 5 4 3 2 1
+> # non-integer sequences
+> seq(0, 100*pi, by = pi)
+  [1]   0.000000   3.141593   6.283185   9.424778  12.566371
+  [6]  15.707963  18.849556  21.991149  25.132741  28.274334
+ [11]  31.415927  34.557519  37.699112  40.840704  43.982297
+ [16]  47.123890  50.265482  53.407075  56.548668  59.690260
+ [21]  62.831853  65.973446  69.115038  72.256631  75.398224
+ [26]  78.539816  81.681409  84.823002  87.964594  91.106187
+ [31]  94.247780  97.389372 100.530965 103.672558 106.814150
+ [36] 109.955743 113.097336 116.238928 119.380521 122.522113
+ [41] 125.663706 128.805299 131.946891 135.088484 138.230077
+ [46] 141.371669 144.513262 147.654855 150.796447 153.938040
+ [51] 157.079633 160.221225 163.362818 166.504411 169.646003
+ [56] 172.787596 175.929189 179.070781 182.212374 185.353967
+ [61] 188.495559 191.637152 194.778745 197.920337 201.061930
+ [66] 204.203522 207.345115 210.486708 213.628300 216.769893
+ [71] 219.911486 223.053078 226.194671 229.336264 232.477856
+ [76] 235.619449 238.761042 241.902634 245.044227 248.185820
+ [81] 251.327412 254.469005 257.610598 260.752190 263.893783
+ [86] 267.035376 270.176968 273.318561 276.460154 279.601746
+ [91] 282.743339 285.884931 289.026524 292.168117 295.309709
+ [96] 298.451302 301.592895 304.734487 307.876080 311.017673
+[101] 314.159265
+> # Assign variables with <-
+> a <- 1:5
+> a
+[1] 1 2 3 4 5
+> b <- seq(15, 3, length = 5)
+> b
+[1] 15 12  9  6  3
+> c <- a * b
+> c
+[1] 15 24 27 24 15
+> # Basic Functions
+> a
+[1] 1 2 3 4 5
+> sum(a)
+[1] 15
+> prod(a)
+[1] 120
+> mean(a)
+[1] 3
+> sd(a)
+[1] 1.581139
+> var(a)
+[1] 2.5
+> min(a)
+[1] 1
+> median(a)
+[1] 3
+> max(a)
+[1] 5
+> range(a)
+[1] 1 5
+> # Extracting subsets
+> a <- seq(0, 100, by = 10)
+> a
+ [1]   0  10  20  30  40  50  60  70  80  90 100
+> a[]
+ [1]   0  10  20  30  40  50  60  70  80  90 100
+> a[5]
+[1] 40
+> a[c(2, 4, 6, 8)]
+[1] 10 30 50 70
+> a[0]
+numeric(0)
+> a[-c(2, 4, 6, 8)]
+[1]   0  20  40  60  80  90 100
+> a[c(1, 1, 1, 6, 6, 90)]
+[1]  0  0  0 50 50 NA
+> a[c(1,2)] <- c(333, 555)
+> a
+ [1] 333 555  20  30  40  50  60  70  80  90 100
+> a[c(1,2)] <- c(333, 555)
+> a 
+ [1] 333 555  20  30  40  50  60  70  80  90 100
+> (a > 50) # which indicies are true
+ [1]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+> ### Boolean
+> a
+ [1] 333 555  20  30  40  50  60  70  80  90 100
+> (a > 50)
+ [1]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+> which(a > 50)
+[1]  1  2  7  8  9 10 11
+> a[a > 50)]
+Error: unexpected ')' in "a[a > 50)"
+> a[(a > 50)]
+[1] 333 555  60  70  80  90 100
+> !(a > 50)
+ [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+> a[!(a > 50)]
+[1] 20 30 40 50
+> # Comparison
+> a
+ [1] 333 555  20  30  40  50  60  70  80  90 100
+> a[(a == 55)]
+numeric(0)
+> a[(a != 50)]
+ [1] 333 555  20  30  40  60  70  80  90 100
+> a[(a > 50)]
+[1] 333 555  60  70  80  90 100
+> a[(a < 50)]
+[1] 20 30 40
+> a[(a <= 50)]
+[1] 20 30 40 50
+> (c(10, 14, 40, 60, 99) %in% a)
+[1] FALSE FALSE  TRUE  TRUE FALSE
+> # Boolean Operators
+> a
+ [1] 333 555  20  30  40  50  60  70  80  90 100
+> a[(a >= 50) & (a <= 90)]
+[1] 50 60 70 80 90
+> a[(a < 50) | (a > 100)]
+[1] 333 555  20  30  40
+> a[(a < 50) | !(a > 100)]
+[1]  20  30  40  50  60  70  80  90 100
+> a[(a >= 50) & !(a <= 90)]
+[1] 333 555 100
+> # Missing Values
+> NA + 8
+[1] NA
+> 3 * NA
+[1] NA
+> mean(c(1, 2, NA))
+[1] NA
+> mean(c(NA, 1, 2), na.rm = TRUE)
+[1] 1.5
+> sum(c(NA, 1, 2))
+[1] NA
+> sum(c(NA, 1, 2), na.rm = TRUE)
+[1] 3
+> a <- c(NA, 1:5, NA)
+> a
+[1] NA  1  2  3  4  5 NA
+> is.na(a)
+[1]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
+> !is.na(a)
+[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+> a[!is.na(a)]
+[1] 1 2 3 4 5
+> a
+[1] NA  1  2  3  4  5 NA
+> a <- a[!is.na(a)]
+> a
+[1] 1 2 3 4 5
+
+library(ggplot2)
+> ?mpg
+> head(mpg)
+  manufacturer model displ year cyl
+1         audi    a4   1.8 1999   4
+2         audi    a4   1.8 1999   4
+3         audi    a4   2.0 2008   4
+4         audi    a4   2.0 2008   4
+5         audi    a4   2.8 1999   6
+6         audi    a4   2.8 1999   6
+       trans drv cty hwy fl   class
+1   auto(l5)   f  18  29  p compact
+2 manual(m5)   f  21  29  p compact
+3 manual(m6)   f  20  31  p compact
+4   auto(av)   f  21  30  p compact
+5   auto(l5)   f  16  26  p compact
+6 manual(m5)   f  18  26  p compact
+> str(mpg)
+Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	234 obs. of  11 variables:
+ $ manufacturer: chr  "audi" "audi" "audi" "audi" ...
+ $ model       : chr  "a4" "a4" "a4" "a4" ...
+ $ displ       : num  1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+ $ year        : int  1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+ $ cyl         : int  4 4 4 4 6 6 6 4 4 4 ...
+ $ trans       : chr  "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+ $ drv         : chr  "f" "f" "f" "f" ...
+ $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...
+ $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...
+ $ fl          : chr  "p" "p" "p" "p" ...
+ $ class       : chr  "compact" "compact" "compact" "compact" ...
+> summary(mpg)
+ manufacturer          model               displ            year           cyl       
+ Length:234         Length:234         Min.   :1.600   Min.   :1999   Min.   :4.000  
+ Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999   1st Qu.:4.000  
+ Mode  :character   Mode  :character   Median :3.300   Median :2004   Median :6.000  
+                                       Mean   :3.472   Mean   :2004   Mean   :5.889  
+                                       3rd Qu.:4.600   3rd Qu.:2008   3rd Qu.:8.000  
+                                       Max.   :7.000   Max.   :2008   Max.   :8.000  
+    trans               drv                 cty             hwy             fl           
+ Length:234         Length:234         Min.   : 9.00   Min.   :12.00   Length:234        
+ Class :character   Class :character   1st Qu.:14.00   1st Qu.:18.00   Class :character  
+ Mode  :character   Mode  :character   Median :17.00   Median :24.00   Mode  :character  
+                                       Mean   :16.86   Mean   :23.44                     
+                                       3rd Qu.:19.00   3rd Qu.:27.00                     
+                                       Max.   :35.00   Max.   :44.00                     
+    class          
+ Length:234        
+ Class :character  
+ Mode  :character  
